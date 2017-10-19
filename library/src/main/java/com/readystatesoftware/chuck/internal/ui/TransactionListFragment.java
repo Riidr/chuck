@@ -34,6 +34,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.readystatesoftware.chuck.R;
 import com.readystatesoftware.chuck.internal.data.ChuckContentProvider;
@@ -104,8 +105,10 @@ public class TransactionListFragment extends Fragment implements
         inflater.inflate(R.menu.chuck_main, menu);
         MenuItem searchMenuItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) searchMenuItem.getActionView();
-        searchView.setOnQueryTextListener(this);
-        searchView.setIconifiedByDefault(true);
+        if(searchView != null) {
+            searchView.setOnQueryTextListener(this);
+            searchView.setIconifiedByDefault(true);
+        } else Toast.makeText(getContext(), "Search disabled", Toast.LENGTH_SHORT).show();
         super.onCreateOptionsMenu(menu, inflater);
     }
 
